@@ -18,19 +18,60 @@ const submitBtn = document.getElementById('submit-btn');
 //function
 const init = () => { }
 
-function isValidEmail(email) {
+// regex pattern for email
+function validEmailRegex(email) {
+    // there are lots and lots of patterns available (developer choose)
+    // var pattern =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var pattern = /^[\w.-]+@[\w.-]+\.\w+$/;
     return pattern.test(email);
     // test() method is a function available in JavaScript that is used to check whether a given string matches a specified regex pattern.
 }
 
+// all input validations
+function isUsernameValid(userName) {
+    if (!userName) {
+        console.error("UserName is mandatory");
+        const formControl = userNameEl.parentElement
+        formControl.classList.add('error')
+        const messageEl = formControl.querySelector('.msg');
+        messageEl.innerText = "Username is mandatory"
+    } else if (userName.length < 5) {
+        console.warn("Username length is not enough")
+    } else if (userName.length > 12) {
+        console.warn("Username length is not contains more than 12 characters")
+    }
+}
+
+function isEmailValid(email) {
+    if (!email) {
+        console.error("Email is mandatory");
+        const formControl = emailEl.parentElement
+        console.log(formControl)
+    } else if (!validEmailRegex(email)) {
+        console.warn("Your email is not valid!")
+    }
+}
+
+function isPasswordValid(password) {
+    if (!password) {
+        console.error("Password is mandatory");
+        const formControl = passwordEl.parentElement
+        console.log(formControl)
+    } else if (password.length < 8) {
+        console.warn("password length is not enough")
+    } else if (password.length > 18) {
+        console.warn("password length is not contains more than 16 characters")
+    }
+}
+
 //events
-// // if we done the eventlistener with form element we have to provide submit
+
+// // if we done the event with form element we have to provide submit action
+
 // formEl.addEventListener('submit', (event) => {
 //     console.log(event.preventDefault())
 // })
 
-// // if we done the eventlistener with submit btn element we have to provide click
 submitBtn.addEventListener('click', (event) => {
     event.preventDefault()
 
@@ -39,27 +80,9 @@ submitBtn.addEventListener('click', (event) => {
     const email = emailEl.value.trim();
     const password = passwordEl.value.trim();
 
-    if (!userName) {
-        console.error("UserName is mandatory");
-    } else if (userName.length < 5) {
-        console.warn("Username length is not enough")
-    } else if (userName.length > 12) {
-        console.warn("Username length is not contains more than 12 characters")
-    }
-
-    if (!email) {
-        console.error("Email is mandatory");
-    } else if (isValidEmail(email)) {
-        console.warn("Your email is not valid!")
-    }
-
-    if (!password) {
-        console.error("Password is mandatory");
-    } else if (password.length < 8) {
-        console.warn("password length is not enough")
-    } else if (password.length > 18) {
-        console.warn("password length is not contains more than 16 characters")
-    }
+    isUsernameValid(userName);
+    isEmailValid(email);
+    isPasswordValid(password);
 
     console.table({
         userName: userName,
