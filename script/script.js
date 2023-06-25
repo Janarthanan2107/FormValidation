@@ -85,8 +85,6 @@ function isEmailValid(email) {
     } else {
         displaySuccess(emailEl)
     }
-
-
 }
 
 function isPasswordValid(password) {
@@ -99,12 +97,6 @@ function isPasswordValid(password) {
     } else {
         displaySuccess(passwordEl)
     }
-
-    // if (password.length < 8) {
-    //     console.warn("password length is not enough")
-    // } else if (password.length > 18) {
-    //     console.warn("password length is not contains more than 16 characters")
-    // }
 }
 
 //events
