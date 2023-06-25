@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:wght@400;700&display=swap');
 
 :root {
-    /* colors are changable always more combinations are in "https://coolors.co/" */
+    /* colors are changeable always more combinations are in "https://coolors.co/" */
     --bright-pink-crayola: hsla(346, 84%, 61%, 1);
     --sunglow: hsla(42, 100%, 70%, 1);
     --emerald: hsla(164, 95%, 43%, 1);
     --blue-ncs: hsla(195, 83%, 38%, 1);
     --midnight-green: hsla(195, 83%, 16%, 1);
     --white: rgb(255, 255, 255);
-    --clr-Transprent-Soft-violet: hsla(0, 0%, 0%, 0.5);
+    --clr-Transparent-Soft-violet: hsla(0, 0%, 0%, 0.5);
 
     /* animation and some effects */
     --transition: all 0.3s linear;
@@ -67,6 +67,13 @@ a {
     background-color: var(--white);
 }
 
+.form-title{
+    border-bottom: 2px solid var(--emerald);
+    padding-bottom: 1rem;
+    width: 80%;
+    margin: -0.5rem auto;
+}
+
 .form-control {
     margin-top: 1rem;
     display: flex;
@@ -76,6 +83,7 @@ a {
 
 .form-control label {
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
 .form-input {
@@ -94,10 +102,11 @@ a {
 }
 
 .msg {
-    font-size: smaller;
+    font-size: 10px;
     margin-left: 0.5rem;
     margin-top: 0.2rem;
     visibility: hidden;
+    font-weight: 500;
 }
 
 .form-control.error .msg{

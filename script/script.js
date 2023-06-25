@@ -27,41 +27,84 @@ function validEmailRegex(email) {
     // test() method is a function available in JavaScript that is used to check whether a given string matches a specified regex pattern.
 }
 
+function displayError(inputEl, message) {
+    // selecting parent element by parentElement operator
+    const formControl = inputEl.parentElement
+    formControl.classList.add('error')
+    formControl.classList.remove('success')
+    const messageEl = formControl.querySelector('.msg');
+    messageEl.innerText = `${message} is mandatory`
+}
+
+function displaySuccess(inputEl) {
+    const formControl = inputEl.parentElement
+    formControl.classList.add('success')
+    formControl.classList.remove('error')
+}
+
+function displayWarn(inputEl, message) {
+    const formControl = inputEl.parentElement
+    const messageEl = formControl.querySelector('.msg');
+    messageEl.innerText = `${message} length is not enough`
+}
+
+function displayWarnForMore(inputEl, message, length) {
+    const formControl = inputEl.parentElement
+    formControl.classList.add('error')
+    formControl.classList.remove('success')
+    const messageEl = formControl.querySelector('.msg');
+    messageEl.innerText = `${message} length is not contains more than ${length} characters`
+}
+
+function displayErrorForRegex(inputEl, message) {
+    const formControl = inputEl.parentElement
+    formControl.classList.add('error')
+    formControl.classList.remove('success')
+    const messageEl = formControl.querySelector('.msg');
+    messageEl.innerText = `Your ${message} is not valid`
+}
+
 // all input validations
 function isUsernameValid(userName) {
     if (!userName) {
-        console.error("UserName is mandatory");
-        const formControl = userNameEl.parentElement
-        formControl.classList.add('error')
-        const messageEl = formControl.querySelector('.msg');
-        messageEl.innerText = "Username is mandatory"
+        displayError(userNameEl, "Username")
     } else if (userName.length < 5) {
-        console.warn("Username length is not enough")
+        displayWarn(userNameEl, "Username")
     } else if (userName.length > 12) {
-        console.warn("Username length is not contains more than 12 characters")
+        displayWarnForMore(userNameEl, "Username", 12)
+    } else {
+        displaySuccess(userNameEl)
     }
 }
 
 function isEmailValid(email) {
     if (!email) {
-        console.error("Email is mandatory");
-        const formControl = emailEl.parentElement
-        console.log(formControl)
+        displayError(emailEl, "Email")
     } else if (!validEmailRegex(email)) {
-        console.warn("Your email is not valid!")
+        displayErrorForRegex(emailEl, "Email")
+    } else {
+        displaySuccess(emailEl)
     }
+
+
 }
 
 function isPasswordValid(password) {
     if (!password) {
-        console.error("Password is mandatory");
-        const formControl = passwordEl.parentElement
-        console.log(formControl)
+        displayError(passwordEl, "Password")
     } else if (password.length < 8) {
-        console.warn("password length is not enough")
+        displayWarn(passwordEl, "Password")
     } else if (password.length > 18) {
-        console.warn("password length is not contains more than 16 characters")
+        displayWarnForMore(passwordEl, "Password", 18)
+    } else {
+        displaySuccess(passwordEl)
     }
+
+    // if (password.length < 8) {
+    //     console.warn("password length is not enough")
+    // } else if (password.length > 18) {
+    //     console.warn("password length is not contains more than 16 characters")
+    // }
 }
 
 //events
